@@ -1,0 +1,34 @@
+{
+  "name": "pretty-js-log",
+  "version": "1.0.0",
+  "description": "A light logging package for Node.js and Bun applications. Features file logging and beautiful console output.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belguinan/pretty-js-log.git"
+  },
+  "keywords": [
+    "logging",
+    "logger",
+    "bun",
+    "nodejs",
+    "pretty",
+    "beautiful",
+    "terminal",
+    "console",
+    "colors",
+    "debug",
+    "colorful",
+    "log-rotation",
+    "development"
+  ],
+  "author": "Belguinan Noureddine <nor15dine@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/belguinan/pretty-js-log/issues"
+  },
+  "homepage": "https://github.com/belguinan/pretty-js-log#readme"
+}
