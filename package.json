@@ -4,7 +4,7 @@
   "description": "A light logging package for Node.js and Bun applications. Features file logging and beautiful console output.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -30,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/belguinan/pretty-js-log/issues"
   },
-  "homepage": "https://github.com/belguinan/pretty-js-log#readme"
+  "homepage": "https://github.com/belguinan/pretty-js-log#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
