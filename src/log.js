@@ -84,7 +84,7 @@ function formatArgs(args) {
  * 
  * @return {String}               
  */
-function messageFactory({ id = '', args = [], colors}) {
+function messageFactory({ id = '', args = [], colors }) {
 
     const timestamp = (new Date(Date.now() - tzOffset)).toISOString().replace("T", " ").replace('Z', '')
 
@@ -136,7 +136,7 @@ function writeToFile(message, path) {
     fs.appendFileSync(path, stripAnsiCodes(message) + '\n', "utf8");
 }
 
-function logFactory({id, path, toStdout = true, colors}) {
+function logFactory({ id, path, toStdout = true, colors }) {
 
     const colorTheme = Object.keys(colors || {}).length === 0 ? defaultColors : colors
     
