@@ -99,9 +99,10 @@ MIT License - feel free to use this in your projects!
 
 ## Todo 📋
 
-- Add support daily logs
-- File logging rotation based on file size or on dates.
-- Add support for external logging API's endpoints.
+- [x] Support logging into a file
+- [ ] Add support daily logs
+- [ ] File logging rotation based on file size or on dates.
+- [ ] Add support for external logging API's endpoints.
 
 ## Author 👨‍💻
 
