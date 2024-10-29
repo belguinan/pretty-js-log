@@ -41,6 +41,10 @@ logger.error('Oops! Something went wrong');
 logger.debug('Debug information');
 ```
 
+## Output 🎑
+
+![Pretty JS Log Demo](https://i.ibb.co/ZmYhVwT/pretty-js-log.png)
+
 ## Advanced Usage 🔧
 
 ### Save Logs to File
