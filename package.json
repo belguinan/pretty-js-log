@@ -1,10 +1,10 @@
 {
   "name": "pretty-js-log",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A light logging package for Node.js and Bun applications. Features file logging and beautiful console output.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {
     "type": "git",
