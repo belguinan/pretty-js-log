@@ -114,17 +114,26 @@ function stripAnsiCodes(text) {
  * 
  * @param {String} message 
  */
-function writeLog(message, path, toStdout) {
-
-    if (toStdout !== false) {
-        console.log(message);
+function writeToStdout(message, toStdout) {
+    if (toStdout === false) {
+        return;
     }
 
+    console.log(message);
+}
+
+/**
+ * @param  {String} message
+ * @param  {String} path   
+ * 
+ * @return {Void}        
+ */
+function writeToFile(message, path) {
     if (! path) {
         return;
     }
 
-    return fs.appendFileSync(path, stripAnsiCodes(message) + '\n', "utf8");
+    fs.appendFileSync(path, stripAnsiCodes(message) + '\n', "utf8");
 }
 
 function logFactory({id, path, toStdout = true, colors}) {
@@ -138,7 +147,8 @@ function logFactory({id, path, toStdout = true, colors}) {
             args
         });
 
-        return writeLog(message, path, toStdout || false);
+        writeToStdout(message, toStdout || false);
+        writeToFile(message, path);
     }
     
     logger.info = (...args) => {
@@ -148,7 +158,8 @@ function logFactory({id, path, toStdout = true, colors}) {
             args
         });
 
-        return writeLog(message, path, toStdout || false);
+        writeToStdout(message, toStdout || false);
+        writeToFile(message, path);
     }
     
     logger.debug = (...args) => {
@@ -158,7 +169,8 @@ function logFactory({id, path, toStdout = true, colors}) {
             args
         });
 
-        return writeLog(message, path, toStdout || true);
+        writeToStdout(message, toStdout || true);
+        writeToFile(message, path);
     }
     
     logger.error = (...args) => {
@@ -168,7 +180,8 @@ function logFactory({id, path, toStdout = true, colors}) {
             args
         });
 
-        return writeLog(message, path, toStdout || true);
+        writeToStdout(message, toStdout || true);
+        writeToFile(message, path);
     }
     
     logger.warn = (...args) => {
@@ -178,7 +191,8 @@ function logFactory({id, path, toStdout = true, colors}) {
             args
         });
 
-        return writeLog(message, path, toStdout || true);
+        writeToStdout(message, toStdout || true);
+        writeToFile(message, path);
     }
     
     return logger;
