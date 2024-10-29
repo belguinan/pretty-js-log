@@ -114,9 +114,11 @@ function stripAnsiCodes(text) {
  * 
  * @param {String} message 
  */
-function writeLog(message, path) {
+function writeLog(message, path, toStdout) {
 
-    console.log(message);
+    if (toStdout !== false) {
+        console.log(message);
+    }
 
     if (! path) {
         return;
@@ -125,7 +127,7 @@ function writeLog(message, path) {
     return fs.appendFileSync(path, stripAnsiCodes(message) + '\n', "utf8");
 }
 
-function logFactory({id, path, colors}) {
+function logFactory({id, path, toStdout = true, colors}) {
 
     const colorTheme = Object.keys(colors || {}).length === 0 ? defaultColors : colors
     
@@ -136,7 +138,7 @@ function logFactory({id, path, colors}) {
             args
         });
 
-        return writeLog(message, path);
+        return writeLog(message, path, toStdout || false);
     }
     
     logger.info = (...args) => {
@@ -146,7 +148,7 @@ function logFactory({id, path, colors}) {
             args
         });
 
-        return writeLog(message, path);
+        return writeLog(message, path, toStdout || false);
     }
     
     logger.debug = (...args) => {
@@ -156,7 +158,7 @@ function logFactory({id, path, colors}) {
             args
         });
 
-        return writeLog(message, path);
+        return writeLog(message, path, toStdout || true);
     }
     
     logger.error = (...args) => {
@@ -166,7 +168,7 @@ function logFactory({id, path, colors}) {
             args
         });
 
-        return writeLog(message, path);
+        return writeLog(message, path, toStdout || true);
     }
     
     logger.warn = (...args) => {
@@ -176,7 +178,7 @@ function logFactory({id, path, colors}) {
             args
         });
 
-        return writeLog(message, path);
+        return writeLog(message, path, toStdout || true);
     }
     
     return logger;

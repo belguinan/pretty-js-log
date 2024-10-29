@@ -20,6 +20,14 @@ describe('pretty-js-log', () => {
         expect(console.log).toHaveBeenCalled();
     });
 
+    test('should ignore logging a message', () => {
+        const logger = logFactory({
+            toStdout: false
+        });
+        logger('Hello world');
+        expect(console.log).not.toHaveBeenCalled();
+    });
+
     test('should log info message', () => {
         const logger = logFactory({});
         logger.info('Info message');

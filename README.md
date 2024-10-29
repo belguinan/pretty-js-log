@@ -65,6 +65,20 @@ const data = {
 logger('User data:', data);  // Objects are automatically formatted
 ```
 
+### Disable Console Output
+
+If you want to write logs only to file without console output, use the `toStdout` option:
+
+```javascript
+const logger = logFactory({
+    path: './logs/app.log',
+    toStdout: false    // Logs will only be written to file
+});
+
+logger('This will only appear in the log file');
+logger.info('Silent logging to file');
+````
+
 ## Output Examples 🎨
 
 When you run your logs, they'll look something like this in the console:
