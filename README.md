@@ -18,9 +18,6 @@ A lightweight and colorful logging package for Node.js and Bun applications. Mak
 # Using npm
 npm install pretty-js-log
 
-# Using yarn
-yarn add pretty-js-log
-
 # Using bun
 bun install pretty-js-log
 ```
