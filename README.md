@@ -2,6 +2,8 @@
 
 A lightweight and colorful logging package for Node.js and Bun applications. Makes your console output beautiful and saves logs to files!
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 ## Features
 
 - Colorful console output
