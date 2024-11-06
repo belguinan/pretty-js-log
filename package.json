@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/belguinan/pretty-js-log.git"
   },
+  "files": [
+    "index.js",
+    "src/log.js"
+  ],
+  "sideEffects": false,
   "keywords": [
     "logging",
     "logger",

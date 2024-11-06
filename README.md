@@ -4,6 +4,8 @@
 [![npm version](https://badge.fury.io/js/pretty-js-log.svg)](https://www.npmjs.com/package/pretty-js-log)
 [![npm downloads](https://img.shields.io/npm/dm/pretty-js-log.svg)](https://www.npmjs.com/package/pretty-js-log)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Bundle Size](https://img.shields.io/bundlephobia/min/pretty-js-log)](https://bundlephobia.com/package/pretty-js-log)
+[![Bundle Size (gzip)](https://img.shields.io/bundlephobia/minzip/pretty-js-log)](https://bundlephobia.com/package/pretty-js-log)
 
 A lightweight and colorful logging package for Node.js and Bun applications. Makes your console output beautiful and saves logs to files!
 
