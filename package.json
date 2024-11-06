@@ -1,6 +1,6 @@
 {
   "name": "pretty-js-log",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A light logging package for Node.js and Bun applications. Features file logging and beautiful console output.",
   "main": "index.js",
   "scripts": {
