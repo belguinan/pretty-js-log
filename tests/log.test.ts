@@ -1,11 +1,11 @@
-const { logFactory } = require('../src/log.js');
+import { logFactory } from '../src/log';
 
 describe('pretty-js-log', () => {
 
-    console.log = jest.fn();
+    console.log = jest.fn() as jest.Mock;
 
     beforeEach(() => {
-        console.log.mockClear();
+        (console.log as jest.Mock).mockClear();
     });
 
     test('should create a logger instance', () => {
