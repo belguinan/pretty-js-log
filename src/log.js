@@ -114,6 +114,7 @@ function logFactory({ id, path, colors, toStdout = true }) {
 
     logger.id = (newId) => {
         currentId = newId
+        return logger;
     }
 
     return logger
