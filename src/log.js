@@ -1,17 +1,7 @@
-const fs = require('node:fs');
+const fs = require('node:fs')
 
-/**
- * Local timezone offset
- * 
- * @type {int}
- */
-const tzOffset = (new Date()).getTimezoneOffset() * 60000;
+const tzOffset = (new Date()).getTimezoneOffset() * 60000
 
-/**
- * ANSI color codes
- * 
- * @type {Object}
- */
 const COLORS = Object.freeze({
     reset: '\u001b[0m',
     gray: '\u001b[90m',
@@ -22,13 +12,8 @@ const COLORS = Object.freeze({
     magenta: '\u001b[35m',
     cyan: '\u001b[36m',
     white: '\u001b[37m',
-});
+})
 
-/**
- * Default color for log levels
- * 
- * @type {Object}
- */
 const LEVELS = Object.freeze({
     default: {
         id: COLORS.blue,
@@ -62,109 +47,76 @@ const LEVELS = Object.freeze({
     }
 })
 
-/**
- * Format params passed for logging
- * 
- * @param {any[]} args
- * 
- * @returns {string}
- */
 function formatArgs(args) {
     return args
         .map(arg => {
             if (typeof arg === 'object') {
-                return JSON.stringify(arg, null, 2);
+                return JSON.stringify(arg, null, 2)
             }
-            return String(arg);
+            return String(arg)
         })
-        .join(' ');
+        .join(' ')
 }
 
-/**
- * Log message factory
- * 
- * @param  {String} options.id    
- * @param  {Array}  options.args  
- * @param  {Array} options.colors
- * 
- * @return {String}               
- */
 function messageFactory({ id = '', level, args = [], colors }) {
-
     const timestamp = (new Date(Date.now() - tzOffset)).toISOString().replace("T", " ").replace('Z', '')
-
-    let message =  `${COLORS.reset}${colors?.datetime}[${timestamp}]${COLORS.reset}`;
+    let message =  `${COLORS.reset}${colors?.datetime}[${timestamp}]${COLORS.reset}`
     
     if (id) {
-        message += `${COLORS.reset} - ${colors?.id}[id:${id}]${COLORS.reset}`;
+        message += `${COLORS.reset} - ${colors?.id}[id:${id}]${COLORS.reset}`
     }
     
     if (level) {
-        message += `${COLORS.reset} - ${colors?.level}[${level.length === 4 ? level + ' ' : level}]${COLORS.reset}`;
+        message += `${COLORS.reset} - ${colors?.level}[${level.length === 4 ? level + ' ' : level}]${COLORS.reset}`
     }
-
-    message += `${COLORS.reset} - ${colors?.message}${formatArgs(args)}${COLORS.reset}`;
+    message += `${COLORS.reset} - ${colors?.message}${formatArgs(args)}${COLORS.reset}`
     
-    return message;
+    return message
 }
 
-/**
- * Remvoe ANSI color codes
- * 
- * @param  {String} text
- * @return {String}     
- */
 function stripAnsiCodes(text) {
-    return text.replace(/\u001b\[\d{1,2}m|\u001b\[0m/g, '');
+    return text.replace(/\u001b\[\d{1,2}m|\u001b\[0m/g, '')
 }
 
-/**
- * Write to stdout and file
- * 
- * @param {String} message 
- */
 function writeToStdout(message) {
-    console.log(message);
+    console.log(message)
 }
 
-/**
- * @param  {String} message
- * @param  {String} path   
- * 
- * @return {Void}        
- */
 function writeToFile(message, path) {
-    fs.appendFileSync(path, stripAnsiCodes(message) + '\n', "utf8");
+    fs.appendFileSync(path, stripAnsiCodes(message) + '\n', "utf8")
 }
 
 function logFactory({ id, path, colors, toStdout = true }) {
+    let currentId = id
 
     const createLogHandler = (colors, level) => (...args) => {
         const message = messageFactory({
-            id: id || false,
+            id: currentId || false,
             colors,
             level,
             args
-        });
-
+        })
         if (toStdout !== false) {
-            writeToStdout(message);
+            writeToStdout(message)
         }
-
         if (path) {
-            writeToFile(message, path);
+            writeToFile(message, path)
         }
-    };
+    }
 
-    const logger = createLogHandler(colors || LEVELS['default']);
-
+    const logger = createLogHandler(colors || LEVELS['default'])
+    
     Object.keys(LEVELS)
         .filter(level => level !== 'default')
         .forEach(level => {
-            logger[level] = createLogHandler(LEVELS[level], level);
-        });
+            logger[level] = createLogHandler(LEVELS[level], level)
+        })
 
-    return logger;
+    logger.id = (newId) => {
+        currentId = newId
+    }
+
+    return logger
 }
 
 module.exports = { logFactory }

@@ -89,6 +89,20 @@ logger('This will only appear in the log file');
 logger.info('Silent logging to file');
 ````
 
+### Update Logger ID
+You can dynamically update the logger ID after creation using the `id` method:
+
+```javascript
+const logger = logFactory({
+    id: 'initial-id'
+});
+
+logger('First log with initial ID');
+
+logger.id('new-id');
+logger('This log will show the new ID');
+```
+
 ## Output Examples 🎨
 
 When you run your logs, they'll look something like this in the console:
